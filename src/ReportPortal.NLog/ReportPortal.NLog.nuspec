@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>ReportPortal.NLog</id>
+    <version>$version$</version>
+    <title>ReportPortal NLog</title>
+    <authors>Nikolay Borisenko</authors>
+    <owners>Nikolay Borisenko</owners>
+    <licenseUrl>https://raw.githubusercontent.com/reportportal/logger-net-nlog/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/reportportal/logger-net-nlog</projectUrl>
+    <iconUrl>https://reportportal.github.io/img/rp_logo.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Report Portal NLog integration point</description>
+    <copyright>Copyright 2016</copyright>
+    <tags>reportportal testing</tags>
+
+    <dependencies>
+      <group>
+        <dependency id="ReportPortal.Shared" version="[1.1.1,)" />
+        <dependency id="NLog" version="[4.3,)" />
+      </group>
+    </dependencies>
+
+  </metadata>
+  <files>
+     <file src="ReportPortal.NLog.dll" target="lib" />
+
+  </files>
+
+</package>
