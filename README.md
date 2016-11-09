@@ -6,8 +6,9 @@ Install **ReportPortal.NLog** NuGet package.
 
 [![NuGet version](https://badge.fury.io/nu/reportportal.nlog.svg)](https://badge.fury.io/nu/reportportal.nlog)
 
-
-> PS> Install-Package ReportPortal.NLog
+```powershell
+PS> Install-Package ReportPortal.NLog
+```
 
 # Configuration
 
