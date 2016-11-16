@@ -62,12 +62,12 @@ Task("Package")
 		}
 		else
 		{
-			build = AppVeyor.Environment.Build.Version + "-prerelease";
+			build = AppVeyor.Environment.Build.Version;
 		}
 	}
 	else
 	{
-		build += "-prerelease";
+		build += "-local";
 	}
 	NuGetPack("src/ReportPortal.NLog/ReportPortal.NLog.nuspec", new NuGetPackSettings()
 	{
