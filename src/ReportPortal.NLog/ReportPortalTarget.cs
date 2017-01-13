@@ -28,24 +28,13 @@ namespace ReportPortal.Logging
 
         protected override void Write(NLog.LogEventInfo logEvent)
         {
-            if (Bridge.Context.TestId != null)
+            var level = LogLevel.Info;
+            if (LevelMap.ContainsKey(logEvent.Level))
             {
-                var level = LogLevel.Info;
-                if (LevelMap.ContainsKey(logEvent.Level))
-                {
-                    level = LevelMap[logEvent.Level];
-                }
-
-                var request = new AddLogItemRequest
-                {
-                    TestItemId = Bridge.Context.TestId,
-                    Level = level,
-                    Time = DateTime.UtcNow,
-                    Text = logEvent.FormattedMessage
-                };
-
-                Bridge.Service.AddLogItem(request);
+                level = LevelMap[logEvent.Level];
             }
+
+            Bridge.LogMessage(level, logEvent.FormattedMessage);
         }
     }
 }
