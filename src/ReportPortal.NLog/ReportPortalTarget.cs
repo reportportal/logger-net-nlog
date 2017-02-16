@@ -34,7 +34,7 @@ namespace ReportPortal.Logging
                 level = LevelMap[logEvent.Level];
             }
 
-            Bridge.LogMessage(level, logEvent.FormattedMessage);
+            Bridge.LogMessage(level, this.Layout.Render(logEvent));
         }
     }
 }
