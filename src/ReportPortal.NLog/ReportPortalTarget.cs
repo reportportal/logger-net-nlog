@@ -12,7 +12,7 @@ namespace ReportPortal.Logging
     /// Logs will be viewable under current test item from shared context.
     /// </summary>
     [Target("ReportPortal")]
-    public class ReportPortalTarget: TargetWithLayout
+    public class ReportPortalTarget : TargetWithLayout
     {
         protected Dictionary<NLog.LogLevel, LogLevel> LevelMap = new Dictionary<NLog.LogLevel, LogLevel>();
 
@@ -28,16 +28,13 @@ namespace ReportPortal.Logging
 
         protected override void Write(NLog.LogEventInfo logEvent)
         {
-            if (Bridge.Context.LaunchReporter != null && Bridge.Context.LaunchReporter.LastTestNode != null)
+            var level = LogLevel.Info;
+            if (LevelMap.ContainsKey(logEvent.Level))
             {
-                var level = LogLevel.Info;
-                if (LevelMap.ContainsKey(logEvent.Level))
-                {
-                    level = LevelMap[logEvent.Level];
-                }
-
-                Bridge.LogMessage(level, Layout.Render(logEvent));
+                level = LevelMap[logEvent.Level];
             }
+
+            Bridge.LogMessage(level, Layout.Render(logEvent));
         }
     }
 }
