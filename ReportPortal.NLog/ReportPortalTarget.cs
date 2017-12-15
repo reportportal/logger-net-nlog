@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using ReportPortal.Client.Models;
-using ReportPortal.Client.Requests;
 using ReportPortal.Shared;
 using NLog.Targets;
 
