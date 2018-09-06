@@ -10,7 +10,6 @@
     <PackageLicenseUrl>https://raw.githubusercontent.com/reportportal/logger-net-nlog/master/LICENSE</PackageLicenseUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/reportportal/logger-net-nlog/master/Logo.png</PackageIconUrl>
     <PackageProjectUrl>http://reportportal.io</PackageProjectUrl>
-    <PackageIconUrl>https://reportportal.github.io/img/rp_logo.png</PackageIconUrl>
     <RepositoryUrl>https://github.com/reportportal/logger-net-nlog</RepositoryUrl>
     
     <RepositoryType>GitHub</RepositoryType>
