@@ -16,7 +16,7 @@ namespace ReportPortal.Logging
 
         public ReportPortalTarget()
         {
-            LevelMap[NLog.LogLevel.Fatal] = LogLevel.Error;
+            LevelMap[NLog.LogLevel.Fatal] = LogLevel.Fatal;
             LevelMap[NLog.LogLevel.Error] = LogLevel.Error;
             LevelMap[NLog.LogLevel.Warn] = LogLevel.Warning;
             LevelMap[NLog.LogLevel.Info] = LogLevel.Info;
