@@ -32,7 +32,12 @@ namespace ReportPortal.Logging
                 level = LevelMap[logEvent.Level];
             }
 
-            Bridge.LogMessage(level, Layout.Render(logEvent));
+            Log.Message(new Client.Requests.AddLogItemRequest
+            {
+                Level = level,
+                Time = logEvent.TimeStamp.ToUniversalTime(),
+                Text = Layout.Render(logEvent)
+            });
         }
     }
 }
