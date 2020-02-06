@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
-using ReportPortal.Client.Models;
 using ReportPortal.Shared;
 using NLog.Targets;
+using ReportPortal.Client.Abstractions.Responses;
+using ReportPortal.Client.Abstractions.Requests;
 
 namespace ReportPortal.Logging
 {
@@ -32,7 +33,7 @@ namespace ReportPortal.Logging
                 level = LevelMap[logEvent.Level];
             }
 
-            Log.Message(new Client.Requests.AddLogItemRequest
+            Log.Message(new CreateLogItemRequest
             {
                 Level = level,
                 Time = logEvent.TimeStamp.ToUniversalTime(),
