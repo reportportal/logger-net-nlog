@@ -33,7 +33,7 @@ namespace ReportPortal.Logging
                 level = LevelMap[logEvent.Level];
             }
 
-            Log.Message(new CreateLogItemRequest
+            Log.ActiveScope.Message(new CreateLogItemRequest
             {
                 Level = level,
                 Time = logEvent.TimeStamp.ToUniversalTime(),
