@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using ReportPortal.Shared;
 using NLog.Targets;
-using ReportPortal.Client.Abstractions.Requests;
-using ReportPortal.Client.Abstractions.Models;
+using ReportPortal.Shared.Execution.Logging;
 
 namespace ReportPortal.Logging
 {
@@ -13,32 +12,31 @@ namespace ReportPortal.Logging
     [Target("ReportPortal")]
     public class ReportPortalTarget : TargetWithLayout
     {
-        protected Dictionary<NLog.LogLevel, LogLevel> LevelMap = new Dictionary<NLog.LogLevel, LogLevel>();
+        protected Dictionary<NLog.LogLevel, LogMessageLevel> LevelMap = new Dictionary<NLog.LogLevel, LogMessageLevel>();
 
         public ReportPortalTarget()
         {
-            LevelMap[NLog.LogLevel.Fatal] = LogLevel.Fatal;
-            LevelMap[NLog.LogLevel.Error] = LogLevel.Error;
-            LevelMap[NLog.LogLevel.Warn] = LogLevel.Warning;
-            LevelMap[NLog.LogLevel.Info] = LogLevel.Info;
-            LevelMap[NLog.LogLevel.Debug] = LogLevel.Debug;
-            LevelMap[NLog.LogLevel.Trace] = LogLevel.Trace;
+            LevelMap[NLog.LogLevel.Fatal] = LogMessageLevel.Fatal;
+            LevelMap[NLog.LogLevel.Error] = LogMessageLevel.Error;
+            LevelMap[NLog.LogLevel.Warn] = LogMessageLevel.Warning;
+            LevelMap[NLog.LogLevel.Info] = LogMessageLevel.Info;
+            LevelMap[NLog.LogLevel.Debug] = LogMessageLevel.Debug;
+            LevelMap[NLog.LogLevel.Trace] = LogMessageLevel.Trace;
         }
 
         protected override void Write(NLog.LogEventInfo logEvent)
         {
-            var level = LogLevel.Info;
+            var level = LogMessageLevel.Info;
             if (LevelMap.ContainsKey(logEvent.Level))
             {
                 level = LevelMap[logEvent.Level];
             }
 
-            Log.ActiveScope.Message(new CreateLogItemRequest
-            {
-                Level = level,
-                Time = logEvent.TimeStamp.ToUniversalTime(),
-                Text = Layout.Render(logEvent)
-            });
+            var logMessage = new LogMessage(Layout.Render(logEvent));
+            logMessage.Time = logEvent.TimeStamp.ToUniversalTime();
+            logMessage.Level = level;
+
+            Context.Current.Log.Message(logMessage);
         }
     }
 }
